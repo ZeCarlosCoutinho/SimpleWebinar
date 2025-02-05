@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe SubscriptionsController, type: :controller do
   describe "POST /create" do
-    let!(:broadcast) { Broadcast.create(title: "Broadcast 1", broadcast_date: Time.zone.now) }
+    let!(:broadcast) { FactoryBot.create(:broadcast) }
 
     let(:email) { "test@example.com" }
     let(:firstname) { "Darth" }
