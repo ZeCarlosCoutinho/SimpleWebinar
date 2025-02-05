@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Subscription, type: :model do
   describe "create" do
-    let(:associated_broadcast) { Broadcast.create(title: "Broadcast 1", broadcast_date: Time.zone.now) }
+    let(:associated_broadcast) { FactoryBot.create(:broadcast) }
 
     it "generates a random token after the subscription is created" do
       subscription = Subscription.new(email: "test@test.com", firstname: "Anakin", surname: "Skywalker", broadcast: associated_broadcast)

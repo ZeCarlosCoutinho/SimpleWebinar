@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe BroadcastsController, type: :controller do
   let(:broadcast_date1) { Time.zone.now.round(3) } # Round the time to 3 digit milliseconds, which is the default serialization of a datetime
   let(:broadcast_date2) { (broadcast_date1 - 1.day).round(3) }
-  let!(:broadcast1) { Broadcast.create(title: "Broadcast 1", broadcast_date: broadcast_date1) }
-  let!(:broadcast2) { Broadcast.create(title: "Broadcast 2", broadcast_date: broadcast_date2) }
+  let!(:broadcast1) { FactoryBot.create(:broadcast, title: "Broadcast 1", broadcast_date: broadcast_date1) }
+  let!(:broadcast2) { FactoryBot.create(:broadcast, title: "Broadcast 2", broadcast_date: broadcast_date2) }
 
   describe "GET /index" do
     subject { get :index }
