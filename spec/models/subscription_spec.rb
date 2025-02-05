@@ -1,5 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Subscription, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "create" do
+    let(:associated_broadcast) { Broadcast.create(title: "Broadcast 1", broadcast_date: Time.zone.now) }
+
+    it "generates a random token after the subscription is created" do
+      subscription = Subscription.new(email: "test@test.com", firstname: "Anakin", surname: "Skywalker", broadcast: associated_broadcast)
+      expect(subscription.personal_token).to be_nil
+      subscription.save!
+      expect(subscription.personal_token).to_not be_nil
+    end
+  end
 end
