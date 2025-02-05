@@ -8,6 +8,7 @@ RSpec.describe SubscriptionsController, type: :controller do
     let(:firstname) { "Darth" }
     let(:surname) { "Vader" }
     let(:registration_ip) { "111.222.333.444" }
+    let(:broadcast_id) { broadcast.id }
 
     subject do
       post "create", params: { subscription: {
@@ -15,7 +16,7 @@ RSpec.describe SubscriptionsController, type: :controller do
         firstname: firstname,
         surname: surname,
         registration_ip: registration_ip,
-        broadcast_id: broadcast.id
+        broadcast_id: broadcast_id
       } }
     end
 
@@ -32,6 +33,19 @@ RSpec.describe SubscriptionsController, type: :controller do
       expect(new_subscription.surname).to eq(surname)
       expect(new_subscription.registration_ip).to eq(registration_ip)
       expect(new_subscription.broadcast.id).to eq(broadcast.id)
+    end
+
+    context "when the broadcast id does not exist" do
+      let(:broadcast_id) { 99999999 }
+
+      it "returns http error" do
+        subject
+        expect(response).to have_http_status(:bad_request)
+      end
+
+      it "does not create a subscription" do
+        expect { subject }.to_not change(Subscription, :count)
+      end
     end
   end
 end
