@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :broadcasts, only: %i[index]
+  resources :subscriptions, only: %i[create]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
