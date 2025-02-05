@@ -1,4 +1,4 @@
-# README
+# SimpleWebinar
 
 This project was done for a small assignment, which aimed at making a very simplified version of WebinarGeek's API.
 
@@ -10,7 +10,7 @@ Also, the API should automatically create a personal token for the user so that 
 
 ## Testing
 
-Note: This assumes you have Rails and all the Gems installed.
+_Note: This assumes you have Rails and all the Gems installed._
 
 To run the tests, run the following command:
 ```sh
