@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_05_102727) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_05_152906) do
   create_table "broadcasts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -28,8 +28,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_05_102727) do
     t.string "surname"
     t.string "registration_ip"
     t.integer "broadcast_id"
+    t.string "personal_token"
     t.index ["broadcast_id"], name: "broadcast_id"
     t.index ["email"], name: "index_subscriptions_on_email", unique: true
+    t.index ["personal_token"], name: "index_subscriptions_on_personal_token", unique: true
   end
 
   add_foreign_key "subscriptions", "broadcasts"
