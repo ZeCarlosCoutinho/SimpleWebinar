@@ -47,5 +47,19 @@ RSpec.describe SubscriptionsController, type: :controller do
         expect { subject }.to_not change(Subscription, :count)
       end
     end
+
+    context "when the email already exists" do
+      let!(:existing_subscription) { FactoryBot.create(:subscription) }
+      let(:email) { existing_subscription.email }
+
+      it "returns http error" do
+        subject
+        expect(response).to have_http_status(:bad_request)
+      end
+
+      it "does not create a subscription" do
+        expect { subject }.to_not change(Subscription, :count)
+      end
+    end
   end
 end
